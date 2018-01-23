@@ -61,6 +61,10 @@ class Issue
         return $issues;
     }
 
+    /**
+     * @param int $number
+     * @return array
+     */
     public function find($number)
     {
         /** @var array $issue */

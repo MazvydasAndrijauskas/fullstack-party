@@ -16,6 +16,10 @@ class IssuesController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(Request $request)
     {
         $issueModel = new Issue();
@@ -42,11 +46,18 @@ class IssuesController extends Controller
         return view('issues.show', $issue);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         return view('issues.create');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -59,6 +70,10 @@ class IssuesController extends Controller
         return redirect(url("issues/$issue->number"));
     }
 
+    /**
+     * @param int $number
+     * @return $this|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($number)
     {
         $issueModel = new Issue();
@@ -72,6 +87,11 @@ class IssuesController extends Controller
         return view('issues.edit', $issue);
     }
 
+    /**
+     * @param int $number
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function update($number, Request $request)
     {
         $this->validate($request, [
